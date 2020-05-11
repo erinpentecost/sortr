@@ -1,0 +1,13 @@
+[package]
+name = "sortr"
+version = "0.1.0"
+authors = ["erinpentecost <erin@pentecost.email>"]
+edition = "2018"
+publish = true
+description = "Sorting algorithm implementations."
+readme = "README.md"
+repository = "https://github.com/erinpentecost/sortr"
+license-file = "LICENSE.md"
+
+[dependencies]
+rand = "0.7.3"
