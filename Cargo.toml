@@ -1,6 +1,6 @@
 [package]
 name = "sortr"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["erinpentecost <erin@pentecost.email>"]
 edition = "2018"
 publish = true
@@ -10,4 +10,13 @@ repository = "https://github.com/erinpentecost/sortr"
 license-file = "LICENSE.md"
 
 [dependencies]
-rand = "0.7.3"
+cfg-if = "0.1.10"
+rand = {version="0.7.3", optional = true}
+
+[features]
+default = ["bogo", "bubble", "heap", "insertion", "merge"]
+bogo = ["rand"]
+bubble = []
+heap = []
+insertion = []
+merge = []

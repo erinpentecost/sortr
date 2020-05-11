@@ -1,8 +1,15 @@
+#[cfg(feature = "bogo")]
 pub mod bogo;
+#[cfg(feature = "bubble")]
 pub mod bubble;
+#[cfg(feature = "heap")]
 pub mod heap;
+#[cfg(feature = "insertion")]
 pub mod insertion;
+#[cfg(feature = "merge")]
 pub mod merge;
+
+use cfg_if::cfg_if;
 
 pub mod signature {
 
@@ -20,11 +27,31 @@ pub mod signature {
 /// Returns a list of all concrete implementations of signature::sort
 /// in this module.
 pub fn concrete_sorts<T: signature::Sortable>() -> Vec<Box<dyn signature::Sort<T>>> {
-    vec![
-        Box::new(bogo::Bogo),
-        Box::new(bubble::Bubble),
-        Box::new(heap::Heap),
-        Box::new(insertion::Insertion),
-        Box::new(merge::Merge),
-    ]
+    let mut sorts: Vec<Box<dyn signature::Sort<T>>> = vec![];
+    cfg_if! {
+        if #[cfg(feature = "bogo")] {
+            sorts.push(Box::new(bogo::Bogo));
+        }
+    }
+    cfg_if! {
+        if #[cfg(feature = "bubble")] {
+            sorts.push(Box::new(bubble::Bubble));
+        }
+    }
+    cfg_if! {
+        if #[cfg(feature = "heap")] {
+            sorts.push(Box::new(heap::Heap));
+        }
+    }
+    cfg_if! {
+        if #[cfg(feature = "insertion")] {
+            sorts.push(Box::new(insertion::Insertion));
+        }
+    }
+    cfg_if! {
+        if #[cfg(feature = "merge")] {
+            sorts.push(Box::new(merge::Merge));
+        }
+    }
+    sorts
 }
