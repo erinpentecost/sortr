@@ -7,6 +7,7 @@ publish = true
 description = "Sorting algorithm implementations."
 readme = "README.md"
 repository = "https://github.com/erinpentecost/sortr"
+license = "GPL-3.0"
 license-file = "LICENSE.md"
 
 [dependencies]
